@@ -41,7 +41,11 @@ function CatCup() {
         <h2>Currency: {currency}</h2>
         <button onClick = {addHour} disabled={hours>=maxHours}>placeholder, increase hours</button>
         <button onClick = {cashIn} disabled={hours < maxHours}>cash in</button>
-        <button onClick = {toggleStore}>toggle store</button>
+        <div className="cup-button-container">
+          <button onClick = {toggleStore}>store</button>
+          <button>inventory</button>
+          <button>settings</button>
+        </div>
         {storeOpen && <Store currency={currency} buyItem={buyItem} toggleStore={toggleStore}/>}
       </div>
     </div>

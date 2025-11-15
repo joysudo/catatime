@@ -34,6 +34,11 @@ body {
   width: 50vw;
 }
 
+.cup-button-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .cup-fill {
   width: 100%;
   background-color: palevioletred;
@@ -65,3 +70,4 @@ body {
   place-items: center;
   gap: 1rem;
 }
+
