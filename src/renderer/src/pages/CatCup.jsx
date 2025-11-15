@@ -1,5 +1,6 @@
 import Store from '../components/Store';
 import Inventory from '../components/Inventory';
+import Settings from '../components/Settings';
 import { useState } from 'react'
 
 function CatCup() {
@@ -8,8 +9,10 @@ function CatCup() {
   const [currency, setCurrency] = useState(0);
   const maxHours = 3; // make this be able to be picked by user eventually
   const fillPercent = hours/maxHours*100;
+  // tabs
   const [storeOpen, setStoreOpen] = useState(false);
   const [inventoryOpen, setInventoryOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   const addHour = () => { // placeholder
     setHours(prev => Math.min(prev + 0.5, maxHours));
@@ -17,12 +20,6 @@ function CatCup() {
   const cashIn = () => {
     setCurrency(prev => prev + hours);
     setHours(0);
-  };
-  const toggleStore = () => {
-    setStoreOpen(prev => !prev);
-  };
-  const toggleInventory = () => {
-    setInventoryOpen(prev => !prev);
   };
   const buyItem = (item) => { // has to be here bc currency is here
     if (currency >= item.cost) {
@@ -33,7 +30,15 @@ function CatCup() {
       alert("no, you're poor");
     }
   };
-
+  const toggleStore = () => {
+    setStoreOpen(prev => !prev);
+  };
+  const toggleInventory = () => {
+    setInventoryOpen(prev => !prev);
+  };
+  const toggleSettings = () => {
+    setSettingsOpen(prev => !prev);
+  };
 
   return (
     <div className="cup-page-container">
@@ -49,10 +54,11 @@ function CatCup() {
         <div className="cup-button-container">
           <button onClick = {toggleStore}>store</button>
           <button onClick = {toggleInventory}>inventory</button>
-          <button>settings</button>
+          <button onClick = {toggleSettings}>settings</button>
         </div>
         {storeOpen && <Store currency={currency} buyItem={buyItem} toggleStore={toggleStore} ownedItems={ownedItems}/>}
         {inventoryOpen && <Inventory ownedItems={ownedItems} toggleInventory={toggleInventory}/>}
+        {settingsOpen && <Settings toggleSettings={toggleSettings}/>}
         </div>
     </div>
   )
