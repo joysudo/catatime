@@ -7,12 +7,14 @@ function CatCup() {
   const [ownedItems, setOwnedItems] = useState([]);
   const [hours, setHours] = useState(0);
   const [currency, setCurrency] = useState(0);
-  const maxHours = 3; // make this be able to be picked by user eventually
-  const fillPercent = hours/maxHours*100;
   // tabs
   const [storeOpen, setStoreOpen] = useState(false);
   const [inventoryOpen, setInventoryOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  // settings
+  const [maxHours, setMaxHours] = useState(3);
+  const fillPercent = hours/maxHours*100;
+  const [username, setUsername] = useState("user");
 
   const addHour = () => { // placeholder
     setHours(prev => Math.min(prev + 0.5, maxHours));
@@ -46,7 +48,7 @@ function CatCup() {
         <div className="cup-fill" style={{height: `${fillPercent}%`}}></div>
       </div>
       <div className="cup-info-container">
-        <h1>Welcome back, username!</h1> {/*randomizing this message later would be fun*/}
+        <h1>Welcome back, {username}!</h1> {/*randomizing this message later would be fun*/}
         <p>your cup is currently at {hours} hours out of the {maxHours} needed to fill.</p>
         <p>you have {currency} coins to spend on cat-name. ready for a shopping spree?</p>
         <button onClick = {addHour} disabled={hours>=maxHours}>increase hours (placeholder)</button>
@@ -58,7 +60,12 @@ function CatCup() {
         </div>
         {storeOpen && <Store currency={currency} buyItem={buyItem} toggleStore={toggleStore} ownedItems={ownedItems}/>}
         {inventoryOpen && <Inventory ownedItems={ownedItems} toggleInventory={toggleInventory}/>}
-        {settingsOpen && <Settings toggleSettings={toggleSettings}/>}
+        {settingsOpen && <Settings toggleSettings={toggleSettings}
+          maxHours={maxHours}
+          setMaxHours={setMaxHours}
+          username={username}
+          setUsername={setUsername}
+        />}
         </div>
     </div>
   )
