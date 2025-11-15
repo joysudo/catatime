@@ -1,5 +1,24 @@
 @import './base.css';
 
+@font-face {
+  font-family: 'ZT Formom';
+  src: url('../../preload/fonts/ZT Formom.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ZT Formom';
+  src: url('../../preload/fonts/ZT Formom Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'ZT Formom', sans-serif;
+}
+
 body {
   display: flex;
   align-items: center;
