@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 function Store({currency, buyItem, toggleStore}) {
   const inventory = [
     {id: 1, name: "hat 1", cost: 5},
@@ -16,8 +14,9 @@ function Store({currency, buyItem, toggleStore}) {
       <div className="store-grid">
         {inventory.map(item => (
           <div key={item.id} className="store-item">
-            {item.name} - {item.cost} coins
-            <button onClick={() => buyItem(item.id, item.cost)} disabled={currency < item.cost}>buy</button>
+            {item.name}, for
+            {item.cost} coins
+            <button onClick={() => buyItem(item)} disabled={currency < item.cost}>buy</button>
           </div>
         ))}
       </div>

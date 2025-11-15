@@ -1,4 +1,5 @@
 import Store from '../components/Store';
+import Inventory from '../components/Inventory';
 import { useState } from 'react'
 
 function CatCup() {
@@ -8,9 +9,9 @@ function CatCup() {
   const maxHours = 3; // make this be able to be picked by user eventually
   const fillPercent = hours/maxHours*100;
   const [storeOpen, setStoreOpen] = useState(false);
+  const [inventoryOpen, setInventoryOpen] = useState(false);
 
-  // placeholder
-  const addHour = () => {
+  const addHour = () => { // placeholder
     setHours(prev => Math.min(prev + 0.5, maxHours));
   };
   const cashIn = () => {
@@ -19,16 +20,19 @@ function CatCup() {
   };
   const toggleStore = () => {
     setStoreOpen(prev => !prev);
-  }
-  const buyItem = (itemId, itemCost) => { // has to be here bc currency is here
-    if (currency >= itemCost) {
-      setCurrency(prev => prev - itemCost);
-      setOwnedItems(prev => [...prev, itemId]);
-      alert(`success! you've purchased one of item ID ${itemId}!`)
+  };
+  const toggleInventory = () => {
+    setInventoryOpen(prev => !prev);
+  };
+  const buyItem = (item) => { // has to be here bc currency is here
+    if (currency >= item.cost) {
+      setCurrency(prev => prev - item.cost);
+      setOwnedItems(prev => [...prev, item]);
+      alert(`success! you've purchased one of item ID ${item.name}!`)
     } else {
       alert("no, you're poor");
     }
-  }
+  };
 
 
   return (
@@ -43,11 +47,12 @@ function CatCup() {
         <button onClick = {cashIn} disabled={hours < maxHours}>cash in</button>
         <div className="cup-button-container">
           <button onClick = {toggleStore}>store</button>
-          <button>inventory</button>
+          <button onClick = {toggleInventory}>inventory</button>
           <button>settings</button>
         </div>
         {storeOpen && <Store currency={currency} buyItem={buyItem} toggleStore={toggleStore}/>}
-      </div>
+        {inventoryOpen && <Inventory ownedItems={ownedItems} toggleInventory={toggleInventory}/>}
+        </div>
     </div>
   )
 }
