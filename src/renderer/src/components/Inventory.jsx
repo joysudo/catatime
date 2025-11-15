@@ -13,11 +13,16 @@ function Inventory({ownedItems, toggleInventory}) {
         {ownedItems.map(item => (
           <div key={item.id} className="store-item">
             {item.name}
-            <button onClick={() => equipItem(item.id)} disabled={equippedItem == item.id}>equip</button>
+            {equippedItem != item.id &&
+              <button onClick={() => equipItem(item.id)}>equip</button>
+            }
+            {equippedItem == item.id &&
+              <button onClick={() => equipItem(-1)}>unequip</button>
+            }
           </div>
         ))}
       </div>
-            <p>{`currently eqiupped item is ${equippedItem}`}</p>
+      <p>{`currently eqiupped item is ${equippedItem}`}</p>
       <button onClick={toggleInventory}>close inventory</button>
     </div>
   )
