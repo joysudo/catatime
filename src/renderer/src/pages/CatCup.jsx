@@ -4,6 +4,7 @@ function CatCup() {
   const [hours, setHours] = useState(0);
   const [currency, setCurrency] = useState(0);
   const maxHours = 3; // make this be able to be picked by user eventually
+  const fillPercent = hours/maxHours*100;
 
   // placeholder
   const addHour = () => {
@@ -17,6 +18,9 @@ function CatCup() {
   return (
     <>
       <h2>Hours: {hours} / {maxHours}</h2>
+      <div className="cup">
+        <div className="cup-fill" style={{height: `${fillPercent}%`}}></div>
+      </div>
       <h2>Currency: {currency}</h2>
       <button onClick = {addHour} disabled={hours>=maxHours}>placeholder, increase hours</button>
       <button onClick = {cashIn} disabled={hours < maxHours}>cash in</button>

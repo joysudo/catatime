@@ -13,3 +13,17 @@ body {
   flex-direction: column;
   margin-bottom: 80px;
 }
+
+.cup {
+  width: 3rem;
+  height: 18rem;
+  background-color: white;
+  display: flex;
+  align-items: flex-end;
+}
+
+.cup-fill {
+  width: 100%;
+  background-color: palevioletred;
+  transition: height 0.1s ease;
+}
