@@ -2,6 +2,7 @@ import Store from '../components/Store';
 import { useState } from 'react'
 
 function CatCup() {
+  const [ownedItems, setOwnedItems] = useState([]);
   const [hours, setHours] = useState(0);
   const [currency, setCurrency] = useState(0);
   const maxHours = 3; // make this be able to be picked by user eventually
@@ -19,6 +20,16 @@ function CatCup() {
   const toggleStore = () => {
     setStoreOpen(prev => !prev);
   }
+  const buyItem = (itemId, itemCost) => { // has to be here bc currency is here
+    if (currency >= itemCost) {
+      setCurrency(prev => prev - itemCost);
+      setOwnedItems(prev => [...prev, itemId]);
+      alert(`success! you've purchased one of item ID ${itemId}!`)
+    } else {
+      alert("no, you're poor");
+    }
+  }
+
 
   return (
     <>
@@ -30,7 +41,7 @@ function CatCup() {
       <button onClick = {addHour} disabled={hours>=maxHours}>placeholder, increase hours</button>
       <button onClick = {cashIn} disabled={hours < maxHours}>cash in</button>
       <button onClick = {toggleStore}>toggle store</button>
-      {storeOpen && <Store/>}
+      {storeOpen && <Store currency={currency} buyItem={buyItem}/>}
     </>
   )
 }
