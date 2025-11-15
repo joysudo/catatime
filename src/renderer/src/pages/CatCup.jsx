@@ -32,17 +32,19 @@ function CatCup() {
 
 
   return (
-    <>
-      <h2>Hours: {hours} / {maxHours}</h2>
+    <div className="cup-page-container">
       <div className="cup">
         <div className="cup-fill" style={{height: `${fillPercent}%`}}></div>
       </div>
-      <h2>Currency: {currency}</h2>
-      <button onClick = {addHour} disabled={hours>=maxHours}>placeholder, increase hours</button>
-      <button onClick = {cashIn} disabled={hours < maxHours}>cash in</button>
-      <button onClick = {toggleStore}>toggle store</button>
-      {storeOpen && <Store currency={currency} buyItem={buyItem} toggleStore={toggleStore}/>}
-    </>
+      <div className="cup-info-container">
+        <h2>Hours: {hours} / {maxHours}</h2>
+        <h2>Currency: {currency}</h2>
+        <button onClick = {addHour} disabled={hours>=maxHours}>placeholder, increase hours</button>
+        <button onClick = {cashIn} disabled={hours < maxHours}>cash in</button>
+        <button onClick = {toggleStore}>toggle store</button>
+        {storeOpen && <Store currency={currency} buyItem={buyItem} toggleStore={toggleStore}/>}
+      </div>
+    </div>
   )
 }
 

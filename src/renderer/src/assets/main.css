@@ -14,12 +14,24 @@ body {
   margin-bottom: 80px;
 }
 
+.cup-page-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
 .cup {
-  width: 12rem;
-  height: 18rem;
+  width: 25vw;
+  aspect-ratio: 2/3;
   background-color: white;
   display: flex;
   align-items: flex-end;
+}
+
+.cup-info-container {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
 }
 
 .cup-fill {
