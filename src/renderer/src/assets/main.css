@@ -25,6 +25,14 @@ body {
   justify-content: center;
 }
 
+.background {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #root {
   display: flex;
   align-items: center;
@@ -37,6 +45,7 @@ body {
   display: flex;
   flex-direction: row;
   gap: 1.5rem;
+  align-items: center;
 }
 
 .cup {
@@ -79,7 +88,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
-  background-color: lightpink;
+  background-color: linen;
 }
 
 .store-grid {
@@ -90,3 +99,18 @@ body {
   gap: 1rem;
 }
 
+.color-circle {
+  width: 1rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border 0.1s;
+}
+
+.color-circle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0.1rem;
+}
