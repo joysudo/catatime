@@ -41,10 +41,11 @@ function CatCup() {
         <div className="cup-fill" style={{height: `${fillPercent}%`}}></div>
       </div>
       <div className="cup-info-container">
-        <h2>Hours: {hours} / {maxHours}</h2>
-        <h2>Currency: {currency}</h2>
-        <button onClick = {addHour} disabled={hours>=maxHours}>placeholder, increase hours</button>
-        <button onClick = {cashIn} disabled={hours < maxHours}>cash in</button>
+        <h1>Welcome back, username!</h1> {/*randomizing this message later would be fun*/}
+        <p>your cup is currently at {hours} hours out of the {maxHours} needed to fill.</p>
+        <p>you have {currency} coins to spend on cat-name. ready for a shopping spree?</p>
+        <button onClick = {addHour} disabled={hours>=maxHours}>increase hours (placeholder)</button>
+        <button onClick = {cashIn} disabled={hours < maxHours}>pour ur cup</button>
         <div className="cup-button-container">
           <button onClick = {toggleStore}>store</button>
           <button onClick = {toggleInventory}>inventory</button>
