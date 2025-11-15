@@ -1,3 +1,4 @@
+import Store from '../components/Store';
 import { useState } from 'react'
 
 function CatCup() {
@@ -5,6 +6,7 @@ function CatCup() {
   const [currency, setCurrency] = useState(0);
   const maxHours = 3; // make this be able to be picked by user eventually
   const fillPercent = hours/maxHours*100;
+  const [storeOpen, setStoreOpen] = useState(false);
 
   // placeholder
   const addHour = () => {
@@ -14,6 +16,9 @@ function CatCup() {
     setCurrency(prev => prev + hours);
     setHours(0);
   };
+  const toggleStore = () => {
+    setStoreOpen(prev => !prev);
+  }
 
   return (
     <>
@@ -24,6 +29,8 @@ function CatCup() {
       <h2>Currency: {currency}</h2>
       <button onClick = {addHour} disabled={hours>=maxHours}>placeholder, increase hours</button>
       <button onClick = {cashIn} disabled={hours < maxHours}>cash in</button>
+      <button onClick = {toggleStore}>toggle store</button>
+      {storeOpen && <Store/>}
     </>
   )
 }
