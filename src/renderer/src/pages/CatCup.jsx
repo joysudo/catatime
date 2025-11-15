@@ -41,7 +41,7 @@ function CatCup() {
       <button onClick = {addHour} disabled={hours>=maxHours}>placeholder, increase hours</button>
       <button onClick = {cashIn} disabled={hours < maxHours}>cash in</button>
       <button onClick = {toggleStore}>toggle store</button>
-      {storeOpen && <Store currency={currency} buyItem={buyItem}/>}
+      {storeOpen && <Store currency={currency} buyItem={buyItem} toggleStore={toggleStore}/>}
     </>
   )
 }

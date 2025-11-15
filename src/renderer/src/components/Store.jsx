@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function Store({currency, buyItem}) {
+function Store({currency, buyItem, toggleStore}) {
   const inventory = [
     {id: 1, name: "hat 1", cost: 5},
     {id: 2, name: "hat 2", cost: 3},
@@ -12,12 +12,16 @@ function Store({currency, buyItem}) {
 
   return (
     <div className="store">
-      {inventory.map(item => (
-        <div key={item.id} className="store-item">
-          {item.name} - {item.cost} coins
-          <button onClick={() => buyItem(item.id, item.cost)} disabled={currency < item.cost}>buy</button>
-        </div>
-      ))}
+      <h2>store</h2>
+      <div className="store-grid">
+        {inventory.map(item => (
+          <div key={item.id} className="store-item">
+            {item.name} - {item.cost} coins
+            <button onClick={() => buyItem(item.id, item.cost)} disabled={currency < item.cost}>buy</button>
+          </div>
+        ))}
+      </div>
+      <button onClick={toggleStore}>close store</button>
     </div>
   )
 }
