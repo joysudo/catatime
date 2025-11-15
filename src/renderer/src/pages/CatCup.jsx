@@ -50,7 +50,7 @@ function CatCup() {
           <button onClick = {toggleInventory}>inventory</button>
           <button>settings</button>
         </div>
-        {storeOpen && <Store currency={currency} buyItem={buyItem} toggleStore={toggleStore}/>}
+        {storeOpen && <Store currency={currency} buyItem={buyItem} toggleStore={toggleStore} ownedItems={ownedItems}/>}
         {inventoryOpen && <Inventory ownedItems={ownedItems} toggleInventory={toggleInventory}/>}
         </div>
     </div>
