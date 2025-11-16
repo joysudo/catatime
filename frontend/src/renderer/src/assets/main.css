@@ -1,0 +1,138 @@
+@import './base.css';
+
+@font-face {
+  font-family: 'ZT Formom';
+  src: url('../../preload/fonts/ZT Formom.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ZT Formom';
+  src: url('../../preload/fonts/ZT Formom Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'ZT Formom', sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.background {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 80px;
+}
+
+.cup-page-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.cup {
+  position: relative;
+  width: 25vw;
+  aspect-ratio: 2/3;
+}
+
+.cup img {
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cup-foreground {
+  z-index: 100;
+}
+
+.cup-background {
+  z-index: 0;
+}
+
+.cup-fill {
+  position: absolute;
+  left: 1.85vw;
+  right: 1.85vw;
+  bottom: 1.85vh;
+  z-index: 2;
+  top: auto;
+  width: auto;
+  transition: height 0.1s ease;
+}
+
+
+.cup-info-container {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+}
+
+.cup-button-container {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.store {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  gap: 1rem;
+  position: absolute;
+  width: 50vw;
+  height: 50vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: linen;
+}
+
+.store-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  place-items: center;
+  gap: 1rem;
+}
+
+.color-circle {
+  width: 1rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border 0.1s;
+}
+
+.color-circle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0.1rem;
+}
