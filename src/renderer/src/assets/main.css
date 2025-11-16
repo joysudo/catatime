@@ -49,12 +49,39 @@ body {
 }
 
 .cup {
+  position: relative;
   width: 25vw;
   aspect-ratio: 2/3;
-  background-color: white;
-  display: flex;
-  align-items: flex-end;
 }
+
+.cup img {
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cup-foreground {
+  z-index: 100;
+}
+
+.cup-background {
+  z-index: 0;
+}
+
+.cup-fill {
+  position: absolute;
+  left: 1.85vw;
+  right: 1.85vw;
+  bottom: 1.85vh;
+  z-index: 2;
+  top: auto;
+  width: auto;
+  transition: height 0.1s ease;
+}
+
 
 .cup-info-container {
   display: flex;
@@ -67,11 +94,6 @@ body {
   flex-direction: row;
 }
 
-.cup-fill {
-  width: 100%;
-  background-color: palevioletred;
-  transition: height 0.1s ease;
-}
 
 .store {
   display: flex;

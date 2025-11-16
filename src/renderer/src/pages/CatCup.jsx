@@ -1,6 +1,8 @@
 import Store from '../components/Store';
 import Inventory from '../components/Inventory';
 import Settings from '../components/Settings';
+import cupImage from '../assets/cup.png';
+import cupBackgroundImage from '../assets/cup-background.png';
 import { useState } from 'react'
 
 function CatCup() {
@@ -47,14 +49,17 @@ function CatCup() {
     <div className="background" style={{backgroundColor: themeColor}}>
       <div className="cup-page-container">
         <div className="cup">
+          <img src={cupBackgroundImage} className="cup-background"/>
+          <img src={cupImage} className="cup-foreground" />
           <div
             className="cup-fill"
             style={{
-              height: `${fillPercent}%`,
+              height: `${fillPercent * 0.9}%`,
               backgroundColor: themeColor,
               filter: 'brightness(80%) saturate(250%)'
             }}
           ></div>
+          <div className="cup-background"></div>
         </div>
         <div className="cup-info-container">
           <h1>Welcome back, {username}!</h1> {/*randomizing this message later would be fun*/}
