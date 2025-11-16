@@ -22,7 +22,7 @@ function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, t
   }
 
     async function getStats(functionSlackId) {
-      const res = await fetch(`http://localhost:3000/stats?slack_id=${functionSlackId}`);
+      const res = await fetch(`https://catatime-vercel.vercel.app/stats?slack_id=${functionSlackId}`);
       const data = await res.json();
       return data;
     }

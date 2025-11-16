@@ -1,21 +1,44 @@
-import Store from '../components/Store';
-import Inventory from '../components/Inventory';
-import Settings from '../components/Settings';
+import Store from '../components/Store'
+import Inventory from '../components/Inventory'
+import Settings from '../components/Settings'
 
-import cupImage from '../assets/images/cup.png';
-import cupBackgroundImage from '../assets/images/cup-background.png';
-import catImage from '../assets/images/lettuce.png';
-import titleImage from '../assets/images/title.png';
+import cupImage from '../assets/images/cup.png'
+import cupBackgroundImage from '../assets/images/cup-background.png'
+import catImage from '../assets/images/lettuce.png'
+import titleImage from '../assets/images/title.png'
 
 
-import storeIcon from '../assets/images/store.png';
-import inventoryIcon from '../assets/images/inventory.png';
-import settingsIcon from '../assets/images/settings.png';
+import storeIcon from '../assets/images/store.png'
+import inventoryIcon from '../assets/images/inventory.png'
+import settingsIcon from '../assets/images/settings.png'
+
+import cherryHatImage from '../assets/images/store/cherry-hat.png'
+import miniUmbrellaImage from '../assets/images/store/mini-umbrella.png'
+import chocoStrawImage from '../assets/images/store/choco-straw.png'
+import saikiKImage from '../assets/images/store/saiki-k.png'
+import midnightBirdImage from '../assets/images/store/midnight-bird.png'
 
 import { useState, useCallback, useEffect, useRef } from 'react'
 
+// Map item IDs to their image sources
+const ITEM_MAP = {
+  1: { name: 'Cherry hat', src: cherryHatImage },
+  2: { name: 'Mini umbrella', src: miniUmbrellaImage },
+  3: { name: 'Choco straw', src: chocoStrawImage },
+  4: { name: 'Saiki K', src: saikiKImage },
+  5: { name: 'Midnight bird', src: midnightBirdImage }
+}
+
+// Restore full item data from stored items
+const restoreItemData = ((storedItems) => {
+  return storedItems.map((item) => ({
+    ...item,
+    src: ITEM_MAP[item.id]?.src || ''
+  }))
+})
+
 function CatCup() {
-  const { electronAPI } = window;
+  const { electronAPI } = window
 
   const [ownedItems, setOwnedItems] = useState(null);
   const [equippedItem, setEquippedItem] = useState(-1);
@@ -31,16 +54,16 @@ function CatCup() {
   const [username, setUsername] = useState(null);
   const [themeColor, setThemeColor] = useState(null);
   useEffect(() => {
-    electronAPI.readUserData().then(data => {
-      setOwnedItems(data.ownedItems ?? []);
-      setCurrency(data.currency ?? 0);
-      setMaxHours(data.maxHours ?? 2 * 60 * 60);
-      setSlackId(data.slackId ?? "user");
-      setUsername(data.username ?? "user");
-      setThemeColor(data.themeColor ?? "pink");
-      setHours(data.hours ?? 0);
-    });
-  }, []);
+    electronAPI.readUserData().then((data) => {
+      setOwnedItems(restoreItemData(data.ownedItems ?? []))
+      setCurrency(data.currency ?? 0)
+      setMaxHours(data.maxHours ?? 2 * 60 * 60)
+      setSlackId(data.slackId ?? 'user')
+      setUsername(data.username ?? 'user')
+      setThemeColor(data.themeColor ?? 'pink')
+      setHours(data.hours ?? 0)
+    })
+  }, [])
 
   const firstLoad = useRef(true);
 

@@ -3,6 +3,10 @@ productName: catatime
 directories:
   buildResources: build
 files:
+  - 'out/**'
+  - 'node_modules/**'
+  - 'package.json'
+  - 'src/renderer/src/assets/**'
   - '!**/.vscode/*'
   - '!src/*'
   - '!electron.vite.config.{js,ts,mjs,cjs}'
