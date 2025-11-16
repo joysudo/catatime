@@ -14,6 +14,7 @@ import { useState } from 'react'
 
 function CatCup() {
   const [ownedItems, setOwnedItems]=useState([]);
+  const [equippedItem, setEquippedItem] = useState(-1);
   const [hours, setHours]=useState(0);
   const [currency, setCurrency]=useState(0);
   // tabs
@@ -83,7 +84,7 @@ function CatCup() {
             <button onClick={toggleSettings}><img src={settingsIcon} /></button>
           </div>
           {storeOpen && <Store currency={currency} buyItem={buyItem} toggleStore={toggleStore} ownedItems={ownedItems}/>}
-          {inventoryOpen && <Inventory ownedItems={ownedItems} toggleInventory={toggleInventory}/>}
+          {inventoryOpen && <Inventory ownedItems={ownedItems} toggleInventory={toggleInventory} equippedItem={equippedItem} setEquippedItem={setEquippedItem}/>}
           {settingsOpen && <Settings toggleSettings={toggleSettings}
             maxHours={maxHours}
             setMaxHours={setMaxHours}

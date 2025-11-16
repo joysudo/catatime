@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
-function Inventory({ownedItems, toggleInventory}) {
-  const [equippedItem, setEquippedItem] = useState(-1);
+function Inventory({ownedItems, toggleInventory, equippedItem, setEquippedItem}) {
   const equipItem = (itemId) => {
     setEquippedItem(itemId);
   };
