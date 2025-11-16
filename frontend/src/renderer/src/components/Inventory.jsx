@@ -14,16 +14,20 @@ function Inventory({ownedItems, toggleInventory}) {
           <div key={item.id} className="store-item">
             {item.name}
             {equippedItem != item.id &&
-              <button onClick={() => equipItem(item.id)}>equip</button>
+              <button className="glass" onClick={() => equipItem(item.id)}>equip</button>
             }
             {equippedItem == item.id &&
-              <button onClick={() => equipItem(-1)}>unequip</button>
+              <button className="glass" onClick={() => equipItem(-1)}>unequip</button>
             }
           </div>
         ))}
       </div>
-      <p>{`currently eqiupped item is ${equippedItem}`}</p>
-      <button onClick={toggleInventory}>close inventory</button>
+      {equippedItem==-1 ?
+        <p>no item is currently equipped</p> :
+        <p>currently eqiupped item is {equippedItem}</p>
+
+      }
+      <button className="glass-light" onClick={toggleInventory}>close inventory</button>
     </div>
   )
 }
