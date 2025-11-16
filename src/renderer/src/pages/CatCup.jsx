@@ -1,8 +1,14 @@
 import Store from '../components/Store';
 import Inventory from '../components/Inventory';
 import Settings from '../components/Settings';
+
 import cupImage from '../assets/cup.png';
 import cupBackgroundImage from '../assets/cup-background.png';
+
+import storeIcon from '../assets/store.png';
+import inventoryIcon from '../assets/inventory.png';
+import settingsIcon from '../assets/settings.png';
+
 import { useState } from 'react'
 
 function CatCup() {
@@ -68,9 +74,9 @@ function CatCup() {
           <button onClick={addHour} disabled={hours>=maxHours}>increase hours (placeholder)</button>
           <button onClick={cashIn} disabled={hours < maxHours}>pour ur cup</button>
           <div className="cup-button-container">
-            <button onClick={toggleStore}>store</button>
-            <button onClick={toggleInventory}>inventory</button>
-            <button onClick={toggleSettings}>settings</button>
+            <button onClick={toggleStore}><img src={storeIcon} /></button>
+            <button onClick={toggleInventory}><img src={inventoryIcon} /></button>
+            <button onClick={toggleSettings}><img src={settingsIcon} /></button>
           </div>
           {storeOpen && <Store currency={currency} buyItem={buyItem} toggleStore={toggleStore} ownedItems={ownedItems}/>}
           {inventoryOpen && <Inventory ownedItems={ownedItems} toggleInventory={toggleInventory}/>}

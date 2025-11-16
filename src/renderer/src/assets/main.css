@@ -92,6 +92,25 @@ body {
 .cup-button-container {
   display: flex;
   flex-direction: row;
+  max-width: 100%;
+  gap: 0.5vw;
+}
+
+.cup-button-container > button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  max-height: 10vh;
+  max-width: 10vh;
+  aspect-ratio: 1;
+}
+.cup-button-container > button img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
 }
 
 
