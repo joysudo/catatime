@@ -1,45 +1,33 @@
 import { useState } from 'react'
 
-function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, themeColor, setThemeColor, username, setUsername}) {
-  const [tempMaxHours, setTempMaxHours] = useState(maxHours);
+function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, themeColor, setThemeColor, username, setUsername, setHours}) {
+  const [tempMaxHours, setTempMaxHours] = useState(maxHours/60/60);
   const [tempSlackId, setTempSlackId] = useState(slackId);
   const [tempUsername, setTempUsername] = useState(username);
   const themeColors = ['LightPink', '#fcd95b', 'DarkSeaGreen', 'SkyBlue', 'DarkGray', '#eea9f5']
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const handleSave = () => {
-    setMaxHours(Number(tempMaxHours));
+  const handleSave = (e) => {
+    console.log("saving");
+    getStats(tempSlackId).then(results => {
+      alert("pizza " + results.data.username)
+      alert("pepperoni " + results.data.total_seconds)
+      setUsername(results.data.username)
+      setHours(results.data.total_seconds)
+    }) //ts .then gets the stats and then after it gets stats the alert existsf
+    setMaxHours(Number(tempMaxHours)*60*60); {/* "max hours" is a misnomer; the units for this in the system is in seconds, but the user input is their number of hours*/}
     setSlackId(tempSlackId);
-    setUsername(tempUsername);
   }
   const handleColorChange = (color) => {
     setThemeColor(color);
   }
 
-  const fetchStats = async () => {
-    if (!slackId) return;
-    setLoading(true);
-    setError(null);
-
-    const data = await res.json();
-    try {
-      const res = await fetch(`http://localhost:3000/stats?slack_id=${slackId}`);
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text || "Failed to fetch stats");
-      }
-      if (data.username) {
-        setTempUsername(data.username);
-        setUsername(data.username);
-      } 
-    } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
+    async function getStats(functionSlackId) {
+      const res = await fetch(`http://localhost:3000/stats?slack_id=${functionSlackId}`);
+      const data = await res.json();
+      return data;
     }
-      
 
   return (
     <div className="store">
@@ -58,16 +46,10 @@ function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, t
           id="slackIdInput"
           type="text"
           value={tempSlackId}
-          onChange={(e) => setTempSlackId(e.target.value)}
+          onChange={(e) => {
+            setTempSlackId(e.target.value);
+          }}
         /> 
-      </label>
-      <label>Username:
-        <input
-          id="usernameInput"
-          type="text"
-          value={tempUsername}
-          onChange={(e) => setTempUsername(e.target.value)}
-        /> /*note to self from kat btw look at this*/
       </label>
       <p>Theme color: </p>
       <div className="color-circle-container">
@@ -83,7 +65,7 @@ function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, t
           ></div>
         ))}
       </div>
-      <button className="glass-light" onClick={handleSave}>save</button>
+      <button className="glass-light" onClick={(e) => handleSave(e)}>save</button>
       <button className="glass-light" onClick={toggleSettings}>close settings</button>
     </div>
   )

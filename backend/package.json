@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +12,6 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dayjs": "^1.11.19",
-    "express": "^5.1.0"
+    "express": "^4"
   }
 }
