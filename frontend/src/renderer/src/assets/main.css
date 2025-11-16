@@ -84,6 +84,21 @@ body {
   border-radius: 0.7vw;
 }
 
+.cup-cat {
+  animation: MoveUpDown 2s ease-in-out infinite;
+  position: absolute;
+  top: 0;
+  transform: translateY(-50%);
+}
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    transform: translateY(-55%);
+  }
+  50% {
+    transform: translateY(-45%);
+  }
+}
 
 .cup-info-container {
   display: flex;
