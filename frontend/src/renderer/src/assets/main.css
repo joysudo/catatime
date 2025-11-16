@@ -104,6 +104,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 50vw;
+  gap: 0.5rem;
 }
 
 .cup-button-container {

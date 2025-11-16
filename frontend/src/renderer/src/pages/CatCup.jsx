@@ -68,7 +68,10 @@ function CatCup() {
               filter: 'brightness(80%) saturate(250%)'
             }}
           >
-            <img className="cup-cat" src={catImage}/>
+            {ownedItems.map((item, i) => (
+              <img className="cup-cat" src={item.src} style={equippedItem == item.id ? {} : {display: 'none'}} key={i}/>
+            ))}
+            {equippedItem == -1 && <img className="cup-cat" src={catImage} />}
           </div>
           <div className="cup-background"></div>
         </div>
