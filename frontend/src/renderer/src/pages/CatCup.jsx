@@ -20,17 +20,17 @@ function CatCup() {
   const [inventoryOpen, setInventoryOpen]=useState(false);
   const [settingsOpen, setSettingsOpen]=useState(false);
   // settings
-  const [maxHours, setMaxHours]=useState(3);
+  const [maxHours, setMaxHours]=useState(3*60*60);
   const fillPercent=hours/maxHours*100;
   const [slackId, setSlackId]=useState("user");
   const [username, setUsername]=useState("user");
   const [themeColor, setThemeColor]=useState('pink');
 
   const addHour=() => { // placeholder
-    setHours(prev => Math.min(prev + 0.5, maxHours));
+    setHours(prev => Math.min(prev + 1800, maxHours));
   };
   const cashIn=() => {
-    setCurrency(prev => prev + hours);
+    setCurrency(prev => prev + (hours / 60 / 15)); // 1 coin every 15 min
     setHours(0);
   };
   const buyItem=(item) => { // has to be here bc currency is here
@@ -69,8 +69,8 @@ function CatCup() {
           <div className="cup-background"></div>
         </div>
         <div className="cup-info-container">
-          <h1>Welcome back, {slackId}!</h1> {/*randomizing this message later would be fun*/}
-          <p>Your cup is currently at {hours} hours out of the {maxHours} needed to fill.</p>
+          <h1>Welcome back, {username}!</h1> {/*randomizing this message later would be fun*/}
+          <p>Your cup is currently at {Math.floor(hours / 60 / 60)} hours and {Math.floor(hours / 60 % 60)} minutes out of the {Math.floor(maxHours / 60 / 60)} hours needed to fill your cup.</p>
           <p>You have {currency} coins to spend on your cat. Ready for a shopping spree?</p>
           <button className="glass-light" onClick={addHour} disabled={hours>=maxHours}>increase hours</button>
           <button className="glass-light" onClick={cashIn} disabled={hours < maxHours}>cash it in</button>
@@ -80,7 +80,7 @@ function CatCup() {
             <button onClick={toggleSettings}><img src={settingsIcon} /></button>
           </div>
           {storeOpen && <Store currency={currency} buyItem={buyItem} toggleStore={toggleStore} ownedItems={ownedItems}/>}
-          {inventoryOpen && <Inventory ownedItems={ownedItems} toggleInventory={toggleInventory}/>}
+          {inventoryOpen && <Inventory ofwnedItems={ownedItems} toggleInventory={toggleInventory}/>}
           {settingsOpen && <Settings toggleSettings={toggleSettings}
             maxHours={maxHours}
             setMaxHours={setMaxHours}
@@ -90,6 +90,8 @@ function CatCup() {
             setUsername={setUsername}
             themeColor={themeColor}
             setThemeColor={setThemeColor}
+            hours = {hours}
+            setHours = {setHours}
           />}
           </div>
       </div>
