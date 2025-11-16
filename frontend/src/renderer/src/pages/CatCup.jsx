@@ -2,19 +2,19 @@ import Store from '../components/Store';
 import Inventory from '../components/Inventory';
 import Settings from '../components/Settings';
 
-import cupImage from '../assets/cup.png';
-import cupBackgroundImage from '../assets/cup-background.png';
-import catImage from '../assets/lettuce.png';
+import cupImage from '../assets/images/cup.png';
+import cupBackgroundImage from '../assets/images/cup-background.png';
+import catImage from '../assets/images/lettuce.png';
 
-import storeIcon from '../assets/store.png';
-import inventoryIcon from '../assets/inventory.png';
-import settingsIcon from '../assets/settings.png';
+import storeIcon from '../assets/images/store.png';
+import inventoryIcon from '../assets/images/inventory.png';
+import settingsIcon from '../assets/images/settings.png';
 
 import { useState } from 'react'
 
 function CatCup() {
   const [ownedItems, setOwnedItems]=useState([]);
-  const [equippedItem, setEquippedItem] = useState(-1);
+  const [equippedItem, setEquippedItem] = useState(-1); // equal to id
   const [hours, setHours]=useState(0);
   const [currency, setCurrency]=useState(0);
   // tabs
