@@ -4,6 +4,7 @@ import Settings from '../components/Settings';
 
 import cupImage from '../assets/cup.png';
 import cupBackgroundImage from '../assets/cup-background.png';
+import catImage from '../assets/lettuce.png';
 
 import storeIcon from '../assets/store.png';
 import inventoryIcon from '../assets/inventory.png';
@@ -65,7 +66,9 @@ function CatCup() {
               backgroundColor: themeColor,
               filter: 'brightness(80%) saturate(250%)'
             }}
-          ></div>
+          >
+            <img className="cup-cat" src={catImage}/>
+          </div>
           <div className="cup-background"></div>
         </div>
         <div className="cup-info-container">
