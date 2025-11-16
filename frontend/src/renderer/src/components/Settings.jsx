@@ -5,6 +5,8 @@ function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, t
   const [tempSlackId, setTempSlackId] = useState(slackId);
   const [tempUsername, setTempUsername] = useState(username);
   const themeColors = ['LightPink', '#fcd95b', 'DarkSeaGreen', 'SkyBlue', 'DarkGray', '#eea9f5']
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSave = () => {
     setMaxHours(Number(tempMaxHours));
@@ -20,17 +22,22 @@ function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, t
     setLoading(true);
     setError(null);
 
+    const data = await res.json();
     try {
       const res = await fetch(`http://localhost:3000/stats?slack_id=${slackId}`);
       if (!res.ok) {
         const text = await res.text();
         throw new Error(text || "Failed to fetch stats");
       }
-      const data = await res.json();
-      const username = data.username;
+      if (data.username) {
+        setTempUsername(data.username);
+        setUsername(data.username);
+      } 
     } catch (err) {
-      setError(err.message);
-    }
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
 
   return (
     <div className="store">
@@ -50,7 +57,7 @@ function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, t
           type="text"
           value={tempSlackId}
           onChange={(e) => setTempSlackId(e.target.value)}
-        /> /*note to self from kat btw look at this*/
+        /> 
       </label>
       <label>Username:
         <input
