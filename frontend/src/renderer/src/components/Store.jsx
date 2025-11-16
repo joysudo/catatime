@@ -1,10 +1,10 @@
 function Store({currency, buyItem, toggleStore, ownedItems}) {
   const inventory = [
-    {id: 1, name: "Cherry hat", cost: 5},
-    {id: 2, name: "Paper umbrella", cost: 3},
-    {id: 3, name: "Sriped straw", cost: 1},
-    {id: 4, name: "Basic straw", cost: 2},
-    {id: 5, name: "Midnight bird", cost: 6}
+    {id: 1, name: "Cherry hat", cost: 5, src: "../assets/images/store/cherry-hat.png"},
+    {id: 2, name: "Paper umbrella", cost: 3, src: "../assets/images/store/paper-umbrella.png"},
+    {id: 3, name: "Striped straw", cost: 1, src: "../assets/images/store/striped-straw.png"},
+    {id: 4, name: "Basic straw", cost: 2, src: "../assets/images/store/basic-straw.png"},
+    {id: 5, name: "Midnight bird", cost: 6, src: "../assets/images/store/midnight-bird.png"}
   ]
 
 
