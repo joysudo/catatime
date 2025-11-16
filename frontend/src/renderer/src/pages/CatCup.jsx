@@ -17,6 +17,7 @@ function CatCup() {
   const [maxHours, setMaxHours]=useState(3);
   const fillPercent=hours/maxHours*100;
   const [slackId, setSlackId]=useState("user");
+  const [username, setUsername]=useState("user");
   const [themeColor, setThemeColor]=useState('pink');
 
   const addHour=() => { // placeholder
@@ -79,6 +80,8 @@ function CatCup() {
             setMaxHours={setMaxHours}
             slackId={slackId}
             setSlackId={setSlackId}
+            username={username}
+            setUsername={setUsername}
             themeColor={themeColor}
             setThemeColor={setThemeColor}
           />}

@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "An Electron application with React",
-  "main": "./out/main/index.cjs",
+  "main": "./out/main/index.js",
   "type": "module",
   "author": "example.com",
   "homepage": "https://electron-vite.org",
