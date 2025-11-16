@@ -70,9 +70,9 @@ function CatCup() {
         <div className="cup-info-container">
           <h1>Welcome back, {slackId}!</h1> {/*randomizing this message later would be fun*/}
           <p>Your cup is currently at {hours} hours out of the {maxHours} needed to fill.</p>
-          <p>you have {currency} coins to spend on cat-name. ready for a shopping spree?</p>
-          <button onClick={addHour} disabled={hours>=maxHours}>increase hours (placeholder)</button>
-          <button onClick={cashIn} disabled={hours < maxHours}>pour ur cup</button>
+          <p>You have {currency} coins to spend on your cat. Ready for a shopping spree?</p>
+          <button className="glass-light" onClick={addHour} disabled={hours>=maxHours}>increase hours</button>
+          <button className="glass-light" onClick={cashIn} disabled={hours < maxHours}>cash it in</button>
           <div className="cup-button-container">
             <button onClick={toggleStore}><img src={storeIcon} /></button>
             <button onClick={toggleInventory}><img src={inventoryIcon} /></button>

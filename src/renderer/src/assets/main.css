@@ -20,11 +20,6 @@ h1, h2, h3, h4, h5 {
   font-family: 'ZT Formom', serif;
 }
 
-p {
-  font-family: 'Commissioner', sans-serif;
-  font-weight: 300;
-}
-
 body {
   display: flex;
   align-items: center;
@@ -131,7 +126,7 @@ body {
   justify-content: center;
   padding: 5vw;
   border-radius: 1.5rem;
-  gap: 1rem;
+  gap: 0.4vw;
   position: absolute;
   width: 50vw;
   height: 50vh;
@@ -147,7 +142,9 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto;
   place-items: center;
+  justify-items: center;
   gap: 1rem;
+  width: 100%;
 }
 
 .color-circle {
@@ -164,4 +161,50 @@ body {
   justify-content: center;
   flex-direction: row;
   gap: 0.1rem;
+}
+
+.glass{
+	position: relative;
+	display: inline-block;
+  padding: 5px;
+	background-color: darkgray;
+	background-image: linear-gradient(darkgray,lightgray);
+  border-radius: 1rem;
+  border: 2px solid gray;
+  color: #0e0e0e;
+
+}
+
+.glass-disabled {
+  background-color: linear-gradient(gray,darkgray)!important;
+}
+
+.glass-active:after{
+	content: '';
+  border-radius: 0.9rem;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: calc(100% - 4px);
+	height: 50%;
+	background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.0));
+}
+
+.glass-light{
+	position: relative;
+	display: inline-block;
+  padding: 5px;
+	background-color: lightgray;
+	background-image: linear-gradient(lightgray, #efefef);
+  border-radius: 1rem;
+  border: 2px solid darkgray;
+  color: rgb(85, 85, 85);
+}
+
+.glass-light:hover {
+  cursor: pointer;
+}
+
+.glass:hover {
+  cursor: pointer;
 }

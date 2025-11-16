@@ -47,8 +47,8 @@ function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, t
           ></div>
         ))}
       </div>
-      <button onClick={handleSave}>Save</button>
-      <button onClick={toggleSettings}>close settings</button>
+      <button className="glass-light" onClick={handleSave}>save</button>
+      <button className="glass-light" onClick={toggleSettings}>close settings</button>
     </div>
   )
 }

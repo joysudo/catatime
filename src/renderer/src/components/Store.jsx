@@ -1,33 +1,34 @@
 function Store({currency, buyItem, toggleStore, ownedItems}) {
   const inventory = [
-    {id: 1, name: "hat 1", cost: 5},
-    {id: 2, name: "hat 2", cost: 3},
-    {id: 3, name: "hat 3", cost: 1},
-    {id: 4, name: "hat 4", cost: 2},
-    {id: 5, name: "hat 5", cost: 6}
+    {id: 1, name: "Cherry hat", cost: 5},
+    {id: 2, name: "Paper umbrella", cost: 3},
+    {id: 3, name: "Sriped straw", cost: 1},
+    {id: 4, name: "Basic straw", cost: 2},
+    {id: 5, name: "Midnight bird", cost: 6}
   ]
 
 
   return (
     <div className="store">
-      <h2>store</h2>
+      <h1>Store</h1>
       <div className="store-grid">
         {inventory.map(item => (
           <div key={item.id} className="store-item">
-            {item.name}, for {item.cost} coins
+            <p>{item.name}</p>
+            <p><i>{item.cost} coins</i></p>
             {!ownedItems.some(ownedItem => ownedItem.id === item.id) && currency >= item.cost &&
-              <button onClick={() => buyItem(item)} disabled={currency < item.cost}>buy</button>
+              <button className="glass glass-active" onClick={() => buyItem(item)} disabled={currency < item.cost}>buy</button>
             }
             {!ownedItems.some(ownedItem => ownedItem.id === item.id) && currency < item.cost &&
-              <button disabled={true}>not enough currency</button>
+              <button className="glass glass-disabled" disabled={true}>not enough</button>
             }
             {ownedItems.some(ownedItem => ownedItem.id === item.id) &&
-              <button disabled={1 + 1 == 2}>purchased</button>
+              <button className="glass glass-disabled" disabled={1 + 1 == 2}>purchased</button>
             }
           </div>
         ))}
       </div>
-      <button onClick={toggleStore}>close store</button>
+      <button className="glass-light" onClick={toggleStore}>close store</button>
     </div>
   )
 }
