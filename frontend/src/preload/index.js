@@ -1,20 +1,22 @@
-import { contextBridge } from 'electron'
-import { electronAPI } from '@electron-toolkit/preload'
+import { contextBridge, ipcRenderer } from 'electron';
+import { electronAPI } from '@electron-toolkit/preload';
 
-// Custom APIs for renderer
-const api = {}
+// custom API object, contains persistence functions
+const persistenceAPI = {
+    readUserData: () => ipcRenderer.invoke('read-user-data'),
+    writeUserData: (config) => ipcRenderer.invoke('write-user-data', config)
+};
 
-// Use `contextBridge` APIs to expose Electron APIs to
-// renderer only if context isolation is enabled, otherwise
-// just add to the DOM global.
+// expose the APIs to the renderer's global
 if (process.contextIsolated) {
-  try {
-    contextBridge.exposeInMainWorld('electron', electronAPI)
-    contextBridge.exposeInMainWorld('api', api)
-  } catch (error) {
-    console.error(error)
-  }
+    try {
+        contextBridge.exposeInMainWorld('electron', electronAPI);
+        contextBridge.exposeInMainWorld('electronAPI', persistenceAPI);
+    } catch (error) {
+        console.error(error);
+    }
 } else {
-  window.electron = electronAPI
-  window.api = api
+    // fallback for context isolation disabled
+    window.electron = electronAPI;
+    window.electronAPI = persistenceAPI;
 }

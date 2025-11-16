@@ -10,29 +10,84 @@ import storeIcon from '../assets/images/store.png';
 import inventoryIcon from '../assets/images/inventory.png';
 import settingsIcon from '../assets/images/settings.png';
 
-import { useState } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 
 function CatCup() {
-  const [ownedItems, setOwnedItems]=useState([]);
-  const [equippedItem, setEquippedItem] = useState(-1); // equal to id
-  const [hours, setHours]=useState(0);
-  const [currency, setCurrency]=useState(0);
-  // tabs
-  const [storeOpen, setStoreOpen]=useState(false);
-  const [inventoryOpen, setInventoryOpen]=useState(false);
-  const [settingsOpen, setSettingsOpen]=useState(false);
-  // settings
-  const [maxHours, setMaxHours]=useState(3*60*60);
-  const fillPercent=hours/maxHours*100;
-  const [slackId, setSlackId]=useState("user");
-  const [username, setUsername]=useState("user");
-  const [themeColor, setThemeColor]=useState('pink');
+  const { electronAPI } = window;
 
+  const [ownedItems, setOwnedItems] = useState(null);
+  const [equippedItem, setEquippedItem] = useState(-1);
+  const [hours, setHours] = useState(null);
+  const [currency, setCurrency] = useState(null);
+
+  const [storeOpen, setStoreOpen] = useState(false);
+  const [inventoryOpen, setInventoryOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
+  const [maxHours, setMaxHours] = useState(null);
+  const [slackId, setSlackId] = useState(null);
+  const [username, setUsername] = useState(null);
+  const [themeColor, setThemeColor] = useState(null);
+  useEffect(() => {
+    electronAPI.readUserData().then(data => {
+      setOwnedItems(data.ownedItems ?? []);
+      setCurrency(data.currency ?? 0);
+      setMaxHours(data.maxHours ?? 2 * 60 * 60);
+      setSlackId(data.slackId ?? "user");
+      setUsername(data.username ?? "user");
+      setThemeColor(data.themeColor ?? "pink");
+      setHours(data.hours ?? 0);
+    });
+  }, []);
+
+  const firstLoad = useRef(true);
+
+  const saveConfig = useCallback((newConfig) => {
+    electronAPI.writeUserData(newConfig).catch(err =>
+      console.error("Error writing config:", err)
+    );
+  }, []);
+
+  useEffect(() => {
+    if (firstLoad.current) {
+      firstLoad.current = false;
+      return; // do not save immediately on load
+    }
+
+    if (
+      currency === null ||
+      ownedItems === null ||
+      maxHours === null ||
+      slackId === null ||
+      themeColor === null
+    ) return;
+
+    saveConfig({
+      currency,
+      ownedItems,
+      maxHours,
+      slackId,
+      themeColor,
+      hours
+    });
+
+  }, [currency, ownedItems, maxHours, slackId, themeColor, hours, saveConfig]);
+
+  if (
+    currency === null ||
+    ownedItems === null ||
+    maxHours === null ||
+    slackId === null ||
+    themeColor === null ||
+    hours === null
+  ) {
+    return <div className="loading-screen">Loading user data...</div>;
+  }
   const addHour=() => { // placeholder
     setHours(prev => Math.min(prev + 1800, maxHours));
   };
   const cashIn=() => {
-    setCurrency(prev => prev + (hours / 60 / 15)); // 1 coin every 15 min
+    setCurrency(prev => prev + Math.floor(hours / 60 / 15)); // 1 coin every 15 min
     setHours(0);
   };
   const buyItem=(item) => { // has to be here bc currency is here
@@ -54,6 +109,9 @@ function CatCup() {
     setSettingsOpen(prev => !prev);
   };
 
+  const fillPercent=hours/maxHours*100;
+
+
   return (
     <div className="background" style={{backgroundColor: themeColor}}>
       <div className="cup-page-container">
@@ -68,7 +126,7 @@ function CatCup() {
               filter: 'brightness(80%) saturate(250%)'
             }}
           >
-            {ownedItems.map((item, i) => (
+            {ownedItems?.map((item, i) => (
               <img className="cup-cat" src={item.src} style={equippedItem == item.id ? {} : {display: 'none'}} key={i}/>
             ))}
             {equippedItem == -1 && <img className="cup-cat" src={catImage} />}

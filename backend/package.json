@@ -1,7 +1,6 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -13,5 +12,6 @@
     "cors": "^2.8.5",
     "dayjs": "^1.11.19",
     "express": "^4"
-  }
+  },
+  "description": ""
 }
