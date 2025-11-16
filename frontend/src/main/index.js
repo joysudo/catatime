@@ -26,7 +26,8 @@ function createWindow() {
         ? join(process.cwd(), 'src', 'preload', 'index.js')
         : join(__dirname, '../preload/index.js'),
       sandbox: false
-    }
+    },
+    icon: __dirname + './icon.ico'
   })
 
   mainWindow.on('ready-to-show', () => {

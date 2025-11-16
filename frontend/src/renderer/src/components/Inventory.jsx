@@ -7,7 +7,7 @@ function Inventory({ownedItems, toggleInventory, equippedItem, setEquippedItem})
 
   return (
     <div className="store">
-      <h2>inventory</h2>
+      <h1>Inventory</h1>
       <div className="store-grid">
         {ownedItems.map(item => (
           <div key={item.id} className="store-item">
@@ -22,8 +22,8 @@ function Inventory({ownedItems, toggleInventory, equippedItem, setEquippedItem})
         ))}
       </div>
       {equippedItem==-1 ?
-        <p>no item is currently equipped</p> :
-        <p>currently eqiupped item is {equippedItem}</p>
+        <p><i>No item is currently equipped.</i></p> :
+        <p><i>Item #{equippedItem} is currently equipped.</i></p>
 
       }
       <button className="glass-light" onClick={toggleInventory}>close inventory</button>

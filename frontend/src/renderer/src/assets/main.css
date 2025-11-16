@@ -20,6 +20,11 @@ h1, h2, h3, h4, h5 {
   font-family: 'ZT Formom', serif;
 }
 
+p {
+  font-family: 'Commissioner', sans-serif;
+  font-weight: 300;
+}
+
 body {
   display: flex;
   align-items: center;
@@ -27,11 +32,18 @@ body {
 }
 
 .background {
+  /* background-image: url('./images/background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1; */
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 0;
 }
 
 #root {
@@ -39,7 +51,10 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 80px;
+}
+
+.title-image {
+  width: 30vh;
 }
 
 .cup-page-container {
@@ -135,14 +150,24 @@ body {
   cursor: pointer;
 }
 
+button {
+  font-family: 'Commissioner', sans-serif;
+  font-weight: 400;
+}
+
+div {
+  font-family: 'Commissioner', sans-serif;
+  font-weight: 300;
+}
+
 .store {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 5vw;
+  padding: 3vw;
   border-radius: 1.5rem;
-  gap: 0.4vw;
+  gap: 0.5vw;
   position: absolute;
   width: 50vw;
   height: 50vh;
@@ -161,6 +186,11 @@ body {
   justify-items: center;
   gap: 1rem;
   width: 100%;
+  margin: 2vh;
+}
+
+.store-item {
+  text-align: center;
 }
 
 .color-circle {
@@ -223,4 +253,8 @@ body {
 
 .glass:hover {
   cursor: pointer;
+}
+
+.save:active {
+  filter: brightness(80%);
 }

@@ -5,6 +5,8 @@ import Settings from '../components/Settings';
 import cupImage from '../assets/images/cup.png';
 import cupBackgroundImage from '../assets/images/cup-background.png';
 import catImage from '../assets/images/lettuce.png';
+import titleImage from '../assets/images/title.png';
+
 
 import storeIcon from '../assets/images/store.png';
 import inventoryIcon from '../assets/images/inventory.png';
@@ -88,7 +90,7 @@ function CatCup() {
   };
   const cashIn=() => {
     setCurrency(prev => prev + Math.floor(hours / 60 / 15)); // 1 coin every 15 min
-    setHours(0);
+    setHours(hours - Math.min(hours, maxHours));
   };
   const buyItem=(item) => { // has to be here bc currency is here
     if (currency >= item.cost) {
@@ -114,6 +116,7 @@ function CatCup() {
 
   return (
     <div className="background" style={{backgroundColor: themeColor}}>
+      <img src={titleImage} className="title-image"/>
       <div className="cup-page-container">
         <div className="cup">
           <img src={cupBackgroundImage} className="cup-background"/>
@@ -135,9 +138,9 @@ function CatCup() {
         </div>
         <div className="cup-info-container">
           <h1>Welcome back, {username}!</h1> {/*randomizing this message later would be fun*/}
-          <p>Your cup is currently at {Math.floor(hours / 60 / 60)} hours and {Math.floor(hours / 60 % 60)} minutes out of the {Math.floor(maxHours / 60 / 60)} hours needed to fill your cup.</p>
+          <p>Your cup is currently at {Math.floor(hours / 60 / 60)} hours and {Math.floor(hours / 60 % 60)} minutes out. That's out of the {Math.floor(maxHours / 60 / 60)} hours needed to fill your next cup.</p>
           <p>You have {currency} coins to spend on your cat. Ready for a shopping spree?</p>
-          <button className="glass-light" onClick={addHour} disabled={hours>=maxHours}>increase hours</button>
+          {/* <button className="glass-light" onClick={addHour} disabled={hours>=maxHours}>increase hours</button> */}
           <button className="glass-light" onClick={cashIn} disabled={hours < maxHours}>cash it in</button>
           <div className="cup-button-container">
             <button onClick={toggleStore}><img src={storeIcon} /></button>

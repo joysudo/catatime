@@ -11,8 +11,6 @@ function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, t
   const handleSave = (e) => {
     console.log("saving");
     getStats(tempSlackId).then(results => {
-      alert("pizza " + results.data.username)
-      alert("pepperoni " + results.data.total_seconds)
       setUsername(results.data.username)
       setHours(results.data.total_seconds)
     }) //ts .then gets the stats and then after it gets stats the alert existsf
@@ -32,7 +30,7 @@ function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, t
   return (
     <div className="store">
       <h1>settings</h1>
-      <label>Hours per cup:
+      <label>Hours per cup:&nbsp;
         <input
           id="maxHoursInput"
           type="number"
@@ -41,7 +39,7 @@ function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, t
           min="1"
         />
       </label>
-      <label>SlackId:
+      <label>Slack ID:&nbsp;
         <input
           id="slackIdInput"
           type="text"
@@ -49,7 +47,7 @@ function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, t
           onChange={(e) => {
             setTempSlackId(e.target.value);
           }}
-        /> 
+        />
       </label>
       <p>Theme color: </p>
       <div className="color-circle-container">
@@ -65,7 +63,7 @@ function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, t
           ></div>
         ))}
       </div>
-      <button className="glass-light" onClick={(e) => handleSave(e)}>save</button>
+      <button className="glass-light save" onClick={(e) => handleSave(e)}>save</button>
       <button className="glass-light" onClick={toggleSettings}>close settings</button>
     </div>
   )
