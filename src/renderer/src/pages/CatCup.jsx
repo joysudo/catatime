@@ -16,7 +16,7 @@ function CatCup() {
   // settings
   const [maxHours, setMaxHours]=useState(3);
   const fillPercent=hours/maxHours*100;
-  const [username, setUsername]=useState("user");
+  const [slackId, setSlackId]=useState("user");
   const [themeColor, setThemeColor]=useState('pink');
 
   const addHour=() => { // placeholder
@@ -62,7 +62,7 @@ function CatCup() {
           <div className="cup-background"></div>
         </div>
         <div className="cup-info-container">
-          <h1>Welcome back, {username}!</h1> {/*randomizing this message later would be fun*/}
+          <h1>Welcome back, {slackId}!</h1> {/*randomizing this message later would be fun*/}
           <p>Your cup is currently at {hours} hours out of the {maxHours} needed to fill.</p>
           <p>you have {currency} coins to spend on cat-name. ready for a shopping spree?</p>
           <button onClick={addHour} disabled={hours>=maxHours}>increase hours (placeholder)</button>
@@ -77,8 +77,8 @@ function CatCup() {
           {settingsOpen && <Settings toggleSettings={toggleSettings}
             maxHours={maxHours}
             setMaxHours={setMaxHours}
-            username={username}
-            setUsername={setUsername}
+            slackId={slackId}
+            setSlackId={setSlackId}
             themeColor={themeColor}
             setThemeColor={setThemeColor}
           />}

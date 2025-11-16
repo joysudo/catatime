@@ -1,13 +1,13 @@
 import { useState } from 'react'
 
-function Settings({toggleSettings, maxHours, setMaxHours, username, setUsername, themeColor, setThemeColor}) {
+function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, themeColor, setThemeColor}) {
   const [tempMaxHours, setTempMaxHours] = useState(maxHours);
-  const [tempUsername, setTempUsername] = useState(username);
+  const [tempSlackId, setTempSlackId] = useState(slackId);
   const themeColors = ['LightPink', '#fcd95b', 'DarkSeaGreen', 'SkyBlue', 'DarkGray', '#eea9f5']
 
   const handleSave = () => {
     setMaxHours(Number(tempMaxHours));
-    setUsername(tempUsername);
+    setSlackId(tempSlackId);
   }
   const handleColorChange = (color) => {
     setThemeColor(color);
@@ -25,12 +25,12 @@ function Settings({toggleSettings, maxHours, setMaxHours, username, setUsername,
           min="1"
         />
       </label>
-      <label>Username:
+      <label>SlackId:
         <input
-          id="usernameInput"
+          id="slackIdInput"
           type="text"
-          value={tempUsername}
-          onChange={(e) => setTempUsername(e.target.value)}
+          value={tempSlackId}
+          onChange={(e) => setTempSlackId(e.target.value)}
         />
       </label>
       <p>Theme color: </p>
