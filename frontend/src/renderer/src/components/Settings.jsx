@@ -38,6 +38,8 @@ function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, t
       } finally {
         setLoading(false);
       }
+    }
+      
 
   return (
     <div className="store">
@@ -85,6 +87,6 @@ function Settings({toggleSettings, maxHours, setMaxHours, slackId, setSlackId, t
       <button className="glass-light" onClick={toggleSettings}>close settings</button>
     </div>
   )
-}}
+}
 
 export default Settings;
