@@ -24,7 +24,7 @@ function createWindow() {
     webPreferences: {
       preload: is.dev
         ? join(process.cwd(), 'src', 'preload', 'index.js')
-        : join(__dirname, '../preload/index.js'),
+        : join(__dirname, '../preload/index.mjs'),
       sandbox: false
     },
     icon: __dirname + './icon.ico'
